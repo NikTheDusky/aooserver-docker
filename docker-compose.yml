@@ -1,0 +1,10 @@
+name: aooserver
+services:
+  aooserver:
+    build: .
+    image: aooserver:latest
+    restart: unless-stopped
+    ports:
+      - "10998:10998/tcp"
+      - "10998:10998/udp"
+      # fun fact! I couldn't use the short syntax style here (e.g. just "10998/udp". why? idk! docker doing docker things...)
