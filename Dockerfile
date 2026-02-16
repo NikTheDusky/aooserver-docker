@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM debian:13 AS build
+FROM debian:stable AS build
 WORKDIR /src
 RUN <<EOF
 apt-get update
@@ -12,7 +12,7 @@ CONFIG=Release make -j$(nproc)
 strip build/aooserver
 EOF
 
-FROM debian:13-slim
+FROM debian:stable-slim
 COPY --from=build --chmod=+x /src/Builds/LinuxMakefile/build/aooserver /bin/aooserver
 RUN <<EOF
 apt-get update
